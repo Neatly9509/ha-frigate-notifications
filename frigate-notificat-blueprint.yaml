@@ -1,5 +1,5 @@
 blueprint:
-  name: Frigate Notifications (0.14.0.3h)
+  name: Frigate Notifcations
   author: SgtBatten
   homeassistant:
     min_version: 2024.11.0
@@ -222,7 +222,7 @@ blueprint:
                 - label: Snapshot cropped with bounding box
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg?bbox=1&crop=1"
                 - label: Review GIF
-                  value: "{{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif"
+                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
                   # this will show the GIF associated with the first object detected by frigate
                 - label: Object 1 Event GIF
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
@@ -262,7 +262,7 @@ blueprint:
                 - label: Snapshot cropped with bounding box
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg?bbox=1&crop=1"
                 - label: Review GIF
-                  value: "{{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif"
+                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
                   # this will show the GIF associated with the first object detected by frigate
                 - label: Object 1 Event GIF
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
@@ -288,14 +288,14 @@ blueprint:
                   value: ""
                 - label: Review GIF
                   # compared to attachments above, we add format=ts to allow HA to interpret the GIFs as videos, otherwise it fails.
-                  value: "{{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif?format=ts"
+                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif?format=ts"
                 - label: Object 1 Event GIF
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif?format=ts"
                 - label: Clip mp4
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
                 - label: Clip m3u8 (IOS)
                   # requires frigate integration 5.7.0+
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/master.m3u8"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
               mode: dropdown
         final_update:
           name: Final update (Optional)
@@ -679,16 +679,16 @@ blueprint:
             The URL to open when tapping on the notification. Some presets are provided, you can also set your own by typing in the box.
 
             These options define the text and URLs associated with the three action buttons at the bottom of the notification.
-          default: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+          default: "{{base_url}}/api/events/{{id}}/clip.mp4"
           selector:
             select:
               options:
                 - label: View Clip
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
                 - label: View Clip (IOS)
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/master.m3u8"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View GIF
-                  value: "{{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif"
+                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
                 - label: View Snapshot
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg"
                 - label: View Stream
@@ -717,18 +717,18 @@ blueprint:
         url_1:
           name: Action Button 1 URL
           description: Customise what happens when you press the first Action Button. Select from one of the preconfigured options or enter your own custom URL.
-          default: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+          default: "{{base_url}}/api/events/{{id}}/clip.mp4"
           selector:
             select:
               options:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
                 - label: View Clip (IOS)
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/master.m3u8"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View GIF
-                  value: "{{base_url}}/api/frigate{{client_id}}/notifications/{{review_id}}/review_preview.gif"
+                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif"
                 - label: View Snapshot
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg"
                 - label: View Stream
@@ -766,9 +766,9 @@ blueprint:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
                 - label: View Clip (IOS)
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/master.m3u8"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Snapshot
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg"
                 - label: View Stream
@@ -806,9 +806,9 @@ blueprint:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
                 - label: View Clip (IOS)
-                  value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/{{camera}}/master.m3u8"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Snapshot
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/snapshot.jpg"
                 - label: View Stream
@@ -1969,3 +1969,4 @@ actions:
                                     target:
                                       entity_id: "{{tts_helper}}"
               until: "{{ not wait.trigger or wait.trigger.payload_json['type'] == 'end' }}"
+
