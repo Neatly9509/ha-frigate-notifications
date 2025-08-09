@@ -292,7 +292,7 @@ blueprint:
                 - label: Object 1 Event GIF
                   value: "{{base_url}}/api/notifications/{{id}}/{{camera}}/event_preview.gif?format=ts"
                 - label: Clip mp4
-                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: Clip m3u8 (IOS)
                   # requires frigate integration 5.7.0+
                   value: "{{base_url}}/api/events/{{id}}/master.m3u8"
@@ -679,12 +679,12 @@ blueprint:
             The URL to open when tapping on the notification. Some presets are provided, you can also set your own by typing in the box.
 
             These options define the text and URLs associated with the three action buttons at the bottom of the notification.
-          default: "{{base_url}}/api/events/{{id}}/clip.mp4"
+          default: "{{base_url}}/api/events/{{id}}/master.m3u8"
           selector:
             select:
               options:
                 - label: View Clip
-                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Clip (IOS)
                   value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View GIF
@@ -717,14 +717,14 @@ blueprint:
         url_1:
           name: Action Button 1 URL
           description: Customise what happens when you press the first Action Button. Select from one of the preconfigured options or enter your own custom URL.
-          default: "{{base_url}}/api/events/{{id}}/clip.mp4"
+          default: "{{base_url}}/api/events/{{id}}/master.m3u8"
           selector:
             select:
               options:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Clip (IOS)
                   value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View GIF
@@ -766,7 +766,7 @@ blueprint:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Clip (IOS)
                   value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Snapshot
@@ -806,7 +806,7 @@ blueprint:
                 - label: Silence New Notifications
                   value: silence-{{ this.entity_id }}
                 - label: View Clip
-                  value: "{{base_url}}/api/events/{{id}}/clip.mp4"
+                  value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Clip (IOS)
                   value: "{{base_url}}/api/events/{{id}}/master.m3u8"
                 - label: View Snapshot
